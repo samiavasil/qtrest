@@ -7,15 +7,15 @@ class RestItem {
 public:
     RestItem();
     explicit RestItem(QVariantMap object, QString idField);
-    QVariant value(QString key);
-    QStringList keys();
+    QVariant value(QString key) const;
+    QStringList keys() const;
     QString id() const;
     bool isUpdated();
     bool isValid() const;
 
     void update (QVariantMap value);
 
-    bool operator==(const RestItem &other);
+    bool operator==(const RestItem &other) const;
 private:
     QVariantMap m_object;
     QString m_idField;

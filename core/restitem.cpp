@@ -11,11 +11,11 @@ RestItem::RestItem(QVariantMap object, QString idField) {
     m_isValid = true;
 }
 
-QVariant RestItem::value(QString key) {
+QVariant RestItem::value(QString key) const {
     return m_object.value(key);
 }
 
-QStringList RestItem::keys() {
+QStringList RestItem::keys() const {
     return m_object.keys();
 }
 
@@ -41,6 +41,6 @@ void RestItem::update(QVariantMap value) {
     m_isUpdated = true;
 }
 
-bool RestItem::operator==(const RestItem &other) {
+bool RestItem::operator==(const RestItem &other) const {
     return id() == other.id();
 }
