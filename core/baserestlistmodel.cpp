@@ -391,7 +391,7 @@ QString BaseRestListModel::idField() const
 int BaseRestListModel::idFieldRole() const
 {
     QByteArray obj;
-    obj.append(idField());
+    obj.append(idField().toUtf8());
     return m_roleNames.key(obj);
 }
 
@@ -441,13 +441,13 @@ void BaseRestListModel::updateHeadersData(QNetworkReply *reply)
 {
     //update headers data
     QByteArray currentPage;
-    currentPage.append(m_pagination.currentPageHeader());
+    currentPage.append(m_pagination.currentPageHeader().toUtf8());
 
     QByteArray totalCount;
-    totalCount.append(m_pagination.totalCountHeader());
+    totalCount.append(m_pagination.totalCountHeader().toUtf8());
 
     QByteArray pageCount;
-    pageCount.append(m_pagination.pageCountHeader());
+    pageCount.append(m_pagination.pageCountHeader().toUtf8());
 
     m_pagination.setCurrentPage(reply->rawHeader(currentPage).toInt());
     m_pagination.setTotalCount(reply->rawHeader(totalCount).toInt());
@@ -482,7 +482,7 @@ void BaseRestListModel::generateRoleNames()
     if (rowCount() > 0) {
         foreach (QString key, keys) {
             QByteArray k;
-            k.append(key);
+            k.append(key.toUtf8());
             if (!m_roleNames.key(k)) {
                 m_roleNamesIndex++;
                 m_roleNames[m_roleNamesIndex] = k;

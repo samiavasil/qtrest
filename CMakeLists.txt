@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.12.0)
 
 project(qtrest VERSION 0.4.0 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -19,11 +19,14 @@ if("${BUILD_TYPE}" STREQUAL "SHARED")
 endif()
 
 # dependencies
-find_package(Qt5Core REQUIRED)
-find_package(Qt5Network REQUIRED)
+if(NOT DEFINED QT_VERSION_MAJOR)
+    find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Network)
+endif()
+
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Network REQUIRED)
 
 if ("${WITH_QML_SUPPORT}" STREQUAL "1")
-    find_package(Qt5 COMPONENTS Widgets Qml Quick REQUIRED)
+    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Qml Quick REQUIRED)
     message("Build with QML support")
 else()
     message("Build without QML support")

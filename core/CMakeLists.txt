@@ -39,11 +39,11 @@ endif()
 
 set(ADDITIONAL_LIBRARIES "")
 if ("${WITH_QML_SUPPORT}" STREQUAL "1")
-  set(ADDITIONAL_LIBRARIES Qt5::Quick Qt5::Qml)
+    set(ADDITIONAL_LIBRARIES Qt${QT_VERSION_MAJOR}::Quick Qt${QT_VERSION_MAJOR}::Qml)
   add_definitions(-DWITH_QML_SUPPORT)
 endif()
 
-target_link_libraries(qtrest PUBLIC Qt5::Core Qt5::Network ${ADDITIONAL_LIBRARIES})
+target_link_libraries(qtrest PUBLIC Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Network ${ADDITIONAL_LIBRARIES})
 
 # install libs and headers
 if("${BUILD_TYPE}" STREQUAL "STATIC")
