@@ -8,6 +8,7 @@ set(HEADERS_FILES
     detailsmodel.h
     jsonrestlistmodel.h
     pagination.h
+    qtrest_global.h
     requests.h
     restitem.h
     xmlrestlistmodel.h
